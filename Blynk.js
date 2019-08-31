@@ -27,7 +27,7 @@ const exec = require('child_process').exec, child;
 //On Virtual Pin 3 execute the motorScript
 v3.on('write', function(param) {
     if (param[0] == '1') {
-	exec('sudo python motor.py');
+	exec('cd servoMotor & sudo python motor.py');
     }
 
     console.log('V3:', param[0]);
