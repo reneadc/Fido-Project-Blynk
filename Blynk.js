@@ -1,3 +1,4 @@
+#Subject
 var Blynk = require('blynk-library');
 var Gpio = require('onoff').Gpio;
 
@@ -28,7 +29,8 @@ function connectToRaspberryPi{
 //On Virtual Pin 3 execute the motorScript
 v3.on('write', function(param) {
     if (param[0] == '1') {
-	exec('cd servoMotor & sudo python motor.py');
+    //Test UI button
+	exec('cd servoMotor & sudo python main.py');
     }
 
     console.log('V3:', param[0]);

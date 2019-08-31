@@ -40,10 +40,6 @@ def runMotor(rotations):
 		SetAngle(angle)
 		counter += 1
 
-
-if __name__== "__main__":
-
-	runMotor(6)
-	pwm.stop()
-	GPIO.cleanup()
+		pwm.stop()
+		GPIO.cleanup()
 	
