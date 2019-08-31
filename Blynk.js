@@ -24,6 +24,7 @@ child.on('close', (code) => {
 const exec = require('child_process').exec, child;
 
 //connectToRaspberryPi
+function connectToRaspberryPi{
 //On Virtual Pin 3 execute the motorScript
 v3.on('write', function(param) {
     if (param[0] == '1') {
@@ -31,4 +32,5 @@ v3.on('write', function(param) {
     }
 
     console.log('V3:', param[0]);
+    });
 });
