@@ -1,15 +1,37 @@
 # Program used for I2C 16 X 2 Display Fido Project
 
 
-import lcddriver
+from lcd import lcddriver
 import time
 import datetime
 
 #load driver to set it as display
 display = lcddriver.lcd()
-feedTime1 = "08:45:00"
-feedTime2 = "21:30:00"
-                        
+feedTime1 = " "
+feedTime2 = " "
+
+def setfeeding(feedTime = " "):
+        storeTime = []
+        timeString = " "
+        timeAsInt = 0
+        am = " A.M. "
+        pm = " P.M. "
+        noon = 120000
+        midnight = 240000
+        storeTime = feedTime.split(":") 
+        
+        for i in storeTime:
+                i = timeString + i
+                
+        timeAsInt = str(timeString)
+
+        if( timeAsInt < noon or timeAsInt == midnight):
+                feedTime = str(timeAsInt) + am
+        else:
+                feedTime = str(timeAsInt) + pm
+        
+        return feedTime
+
 try:
         #long_string function provided by Didac Garcia.
     def long_string(display,text = '',num_line = 1,num_cols = 16):
@@ -30,18 +52,24 @@ try:
         long_string(display,"Time Now is: ", 1)
         #writing time to display
         display.lcd_display_string(str(datetime.datetime.now().time()), 2)
-
+        
+        display.lcd_clear()
         time.sleep(2)
         long_string(display,"Next Feed Time 1: ", 1)
+        feedTime1 = setfeeding("8:45:00")
         # writing time to display
         display.lcd_display_string(feedTime1, 2)
-   
+        
         time.sleep(3)
+        display.lcd_clear()
+        feedTime1 = setfeeding("8:45:00")
+        
+        display.lcd_clear()
+        feedTime2 = setfeeding("10:45:00")
         long_string(display,"Next Feed Time 2: ", 1)
         # writing time to display
         display.lcd_display_string(feedTime2, 2)
         time.sleep(3)
-        display.lcd_clear()
 except KeyboardInterrupt:
     print("Cleaning up!")
     display.lcd_clear()
